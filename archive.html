@@ -1,0 +1,16 @@
+---
+layout: page
+title: "Archive"
+---
+
+{% assign count = 0 %}
+<h2 id="total"></h2>
+<ul class="archivelist-container">
+{% for post in site.posts %}
+    {% assign count = count | plus: 1 %}
+    <li>
+        <p>{{ post.date | date: "%d %b %Y" }} » <a href="{{ post.url | prepend: site.baseurl }}"> {{ post.title }} </a></p>
+    </li>
+{% endfor %}
+</ul>
+<script>document.getElementById("total").innerHTML="{{ count }} Blog Posts"</script>
