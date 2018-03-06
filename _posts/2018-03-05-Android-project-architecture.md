@@ -11,11 +11,11 @@ tags:
 
 > 基于 Kotlin，集成通用组件和基类的模版，依赖库的选择，辅助工具等。
 
-<br>
 
 ### 1. 开发环境
 
 Android Studio 3.0.1
+
 Gradle 4.1
 
 #### 1.1 Studio 开发效率插件
@@ -52,11 +52,7 @@ Gradle 4.1
 - `okHttp3` okHttp 不说了
 - `logging-interceptor` okHtpp3 同 Group 下的这个拦截器可以实现网络访问的 log，用于 debug
 
-<br>
-
 - `Retrofit` 优点不说了，缺点：我觉得不灵活，必须要从对应 Service 开始请求，无法使用泛型封装到某个流程中进行动态变化的请求。如果谁有好的封装方法请告诉我。
-
-<br>
 
 - `OkGo` 另一个选择，同样是封装 okHttp3，支持 rx2，全中文文档，内部实现 cookie 缓存、请求结果缓存、封装了 Https 的创建 Api 、文件的上传下载等，可以自定义配置是否使用，okHttp Client 的创建部分参考了 Retrofit，Callback 部分则更灵活，原因在于其解析模型的获取（TypeToken) 不是由动态代理传递，而是需要自定义实现的。如果说缺点，我觉得是 rx 的支持部分，代码略丑，毕竟不是源生设计与 rx 合用的。
 
