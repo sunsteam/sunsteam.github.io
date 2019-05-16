@@ -51,6 +51,20 @@ adb shell screenrecord [可选参数] /sdcard/demo.mp4
 adb shell am start com.android.settings -C android.intent.category.LAUNCHER
 # adb 关闭系统设置系统设置
 adb shell am force-stop com.android.settings
+# adb 打开系统浏览器
+adb shell am start com.android.browser -C android.intent.category.LAUNCHE
+# adb 获取所有设备属性
+adb shell getprop
+# adb 获取系统版本
+adb shell getprop ro.build.version.release
+# adb 获取系统api版本
+adb shell getprop ro.build.version.sdk
+# adb 获取手机系统信息（ CPU，厂商名称等）
+adb shell "cat /system/build.prop | grep "product""
+# adb 获取手机相关制造商信息
+adb shell getprop | grep "model\|version.sdk\|manufacturer\|hardware\|platform\|revision\|serialno\|product.name\|brand"
+# adb 获取手机分辨率
+adb shell "dumpsys window | grep mUnrestrictedScreen"
 # adb 查看特定app包信息
 adb shell dumpsys package 包名
 # adb 查看特定app版本
@@ -66,5 +80,11 @@ adb shell dumpsys window w | grep \/ | grep name=
 ```shell
 # adb 查看build.prop
 cat /system/build.prop
+# 获取mac地址
+cat /sys/class/net/wlan0/address
+# 获取内存信息
+cat /proc/meminfo
+# 获取储存信息
+df
 ```
 
