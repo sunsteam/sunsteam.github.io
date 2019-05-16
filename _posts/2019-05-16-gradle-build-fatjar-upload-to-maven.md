@@ -64,6 +64,7 @@ subprojects {
     dependencies {
         testImplementation 'junit:junit:4.12'
     }
+}
 ```
 
 **Project 配置文件**
@@ -128,11 +129,11 @@ sourcesJar.dependsOn(shadowJar)
 2. 不合并，只是把依赖 jar 移动到最终 jar 包的 lib 目录下，然后在 manifest 中把 class-path 指向这个地址，那么加载类时就能正确找到
 3. 嵌套 jars, SpringBoot Gradle plugin 在用，需要用它的启动器自定义 ClassLoader 来启动，会加入很多业务无关代码
 
-
-优点：
+**优点**：
 - 结构和原理简单
 - 不会有无关代码
-缺点：
+
+**缺点**：
 - 类文件路径被改了， 因此如果有直接调用 Class 文件名字或路径进行类加载的代码，会报错
 
 ### 1.4 Shadow 实现
