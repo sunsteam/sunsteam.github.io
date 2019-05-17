@@ -291,3 +291,63 @@ shadowJar {
 sourcesJar.dependsOn(shadowJar)
 
 ```
+
+## 3. 相同需求用Maven怎么做
+
+Maven就是xml丑了点，其实配置很简单
+
+```xml
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.0</version>
+            <executions>
+                <execution>
+                <goals>
+                    <goal>shade</goal>
+                </goals>
+
+                <configuration>
+                    <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <manifestEntries>
+                        <Main-Class>${app.main.class}</Main-Class>
+                        <X-Compile-Source-JDK>${maven.compile.source}</X-Compile-Source-JDK>
+                        <X-Compile-Target-JDK>${maven.compile.target}</X-Compile-Target-JDK>
+                        </manifestEntries>
+                    </transformer>
+                    </transformers>
+                </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+        <!-- 要将源码放上去，需要加入这个插件 -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <configuration>
+                <attach>true</attach>
+            </configuration>
+            <executions>
+                <execution>
+                    <!-- 将goal绑定到verify这个节点，可以避免每次compile代码时候都做打包源码 -->
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+    </plugins>
+  </build>
+
+```
+
+替换${app.main.class}为你的main函数所在的类
+${maven.compile.source}是你的项目源码的JDK版本如1.8
+${maven.compile.target}是你的项目编译的Java版本如1.8
