@@ -73,6 +73,12 @@ adb shell dumpsys package 包名 | findstr version
 adb shell dumpsys activity
 # ADB命令获取当前activity
 adb shell dumpsys window w | grep \/ | grep name=
+# 导出设备日志
+## unix-like 系统：
+## unix-like 系统上 `>` 符号也有转储作用, 但命令行就不打印了, tee会转储也不影响命令行输出
+adb shell logcat -v time thread | tee ~/log.log
+## win 系统：
+adb shell logcat -v time thread > log.log
 ```
 
 ### Linux 常用命令
@@ -80,11 +86,27 @@ adb shell dumpsys window w | grep \/ | grep name=
 ```shell
 # adb 查看build.prop
 cat /system/build.prop
+# 获取网络信息
+netcfg
 # 获取mac地址
 cat /sys/class/net/wlan0/address
 # 获取内存信息
 cat /proc/meminfo
+# 获取cpu信息
+cat /proc/cpuinfo
 # 获取储存信息
 df
 ```
 
+### 模拟操作
+
+```shell
+# 点击设备的Backkey键
+adb shell input keyevent 4
+# 解锁屏幕
+adb shell input keyevent  82
+# 输入文字
+adb shell input text abc
+```
+
+[其他操作按键对照参考:](https://blog.csdn.net/jlminghui/article/details/39268419)
