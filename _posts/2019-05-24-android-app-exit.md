@@ -1,5 +1,14 @@
+---
+layout:     post
+title:      "Android App 结束运行后重启"
+subtitle:   ""
+date:       2019-05-24 12:00:00
+author:     "Yomii"
+catalog:    true
+tags:
+    - Android
+---
 
-# Android App 结束运行后重启
 
 ## 退出方法
 
